@@ -1,0 +1,60 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Convert</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <script>
+        $(document).ready(function(){
+
+            $('.hidden_field').parent().hide();
+
+            $('#get_result').click(function(){
+
+                var sure_field_count = 0;
+
+                $('.sure_field').each(function(){
+                    if( $(this).val() == '' ) sure_field_count++;
+                });
+
+                if( sure_field_count == 0 ){
+                    eval(" result_proc =parseFloat($('#id_1 input').val())/parseFloat($('#id_2 option:selected').val())");
+                    $('#view_result').html(result_proc.toFixed(1));
+                }
+                else $('#view_result').html('Не заполнены обязательные поля!');
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+<div class="container">
+<div class="panel panel-primary">
+<div class="panel-heading"><h1>Конвертер валют</h1></div>
+<br>
+<div class="container">
+
+<br>
+
+    <div id='result_calc_page' style='width:300px;min-height:128px;background:#ffffff;    border: 4px dotted #ccc;padding:20px;'>
+        <p id="id_1">Тенге: <input class="sure_field form-control" placeholder="Введите сумму в тенге.." type="input" value="" style="width: 100%;"></p><p id="id_2"><select class="form-control" style="width: 100%;"><option value="473.99">GBP</option><option value="376.61">EUR</option><option value="51.63">CNY</option><option value="334.41">USD</option><option value="5.06">RUB</option></select><input type="select" style="display: none; width: 100%;"></p>
+
+
+    <button class="btn btn-primary" id='get_result'>Рассчитать</button></br>
+        <br><p id='view_result'></p>
+    </div>
+    <div>
+        </div>
+    </div>
+</div>
+    </div>
+
+
+</body>
+</html>
